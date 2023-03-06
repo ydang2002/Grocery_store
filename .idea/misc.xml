@@ -14,9 +14,11 @@
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/remove_circle.xml" value="0.108" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/Копия Copy of remove_circle.xml" value="0.161" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_login.xml" value="0.152" />
-        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_main.xml" value="0.1693840579710145" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/content_main.xml" value="0.1693840579710145" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/menu/main.xml" value="0.25052083333333336" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1005" />
       </map>
     </option>
