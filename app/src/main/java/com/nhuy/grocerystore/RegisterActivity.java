@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
 
+    ProgressBar progressBar;
+
     private static final String TAG = "RegisterActivity";
 
     @Override
@@ -45,6 +48,9 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.password_reg);
         signIn = findViewById(R.id.sign_in);
 
+        progressBar = findViewById(R.id.progressBar_register);
+        progressBar.setVisibility(View.GONE);
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createUser();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -65,22 +72,22 @@ public class RegisterActivity extends AppCompatActivity {
         String userEmail = email.getText().toString();
         String userPassword = password.getText().toString();
 
-        if (TextUtils.isEmpty(userName)){
+        if (TextUtils.isEmpty(userName)) {
             Toast.makeText(this, "Name is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(userEmail)){
+        if (TextUtils.isEmpty(userEmail)) {
             Toast.makeText(this, "Email is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(userPassword)){
+        if (TextUtils.isEmpty(userPassword)) {
             Toast.makeText(this, "Password is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (userPassword.length() < 6){
+        if (userPassword.length() < 6) {
             Toast.makeText(this, "Password length must be greater than 6 letter", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -90,17 +97,16 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             UserModel userModel = new UserModel(userName, userEmail, userPassword);
                             String id = task.getResult().getUser().getUid();
                             database.getReference().child("Users").child(id).setValue(userModel);
-
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Log.e(TAG,"logError: " +task.getException());
-                            Toast.makeText(RegisterActivity.this, "Error: "+task.getException(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(RegisterActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

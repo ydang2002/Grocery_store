@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_login);
         signUp = findViewById(R.id.sign_up);
 
+        progressBar = findViewById(R.id.progressbar_login);
+        progressBar.setVisibility(View.GONE);
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 loginUser();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -56,17 +63,17 @@ public class LoginActivity extends AppCompatActivity {
         String userEmail = email.getText().toString();
         String userPassword = password.getText().toString();
 
-        if (TextUtils.isEmpty(userEmail)){
+        if (TextUtils.isEmpty(userEmail)) {
             Toast.makeText(this, "Email is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(userPassword)){
+        if (TextUtils.isEmpty(userPassword)) {
             Toast.makeText(this, "Password is Empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (userPassword.length() < 6){
+        if (userPassword.length() < 6) {
             Toast.makeText(this, "Password length must be greater than 6 letter", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -76,11 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(LoginActivity.this, "Error" +task.getException(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(LoginActivity.this, "Error" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
