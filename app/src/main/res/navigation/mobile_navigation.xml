@@ -12,14 +12,34 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.nhuy.grocerystore.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_profile"
+        android:name="com.nhuy.grocerystore.ui.profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.nhuy.grocerystore.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_category"
+        android:name="com.nhuy.grocerystore.ui.category.CategoryFragment"
+        android:label="@string/menu_category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.nhuy.grocerystore.OffersFragment"
+        android:label="@string/offers"
+        tools:layout="@layout/fragment_offers" />
+    <fragment
+        android:id="@+id/nav_new_product"
+        android:name="com.nhuy.grocerystore.NewProductFragment"
+        android:label="@string/new_product"
+        tools:layout="@layout/fragment_new_product" />
+    <fragment
+        android:id="@+id/nav_my_orders"
+        android:name="com.nhuy.grocerystore.MyOrdersFragment"
+        android:label="@string/my_orders"
+        tools:layout="@layout/fragment_my_orders" />
+    <fragment
+        android:id="@+id/nav_my_carts"
+        android:name="com.nhuy.grocerystore.MyCartsFragment"
+        android:label="@string/my_carts"
+        tools:layout="@layout/fragment_my_carts" />
 </navigation>

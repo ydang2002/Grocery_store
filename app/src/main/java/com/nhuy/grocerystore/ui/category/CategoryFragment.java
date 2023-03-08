@@ -1,4 +1,4 @@
-package com.nhuy.grocerystore.ui.slideshow;
+package com.nhuy.grocerystore.ui.category;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.nhuy.grocerystore.databinding.FragmentSlideshowBinding;
+import com.nhuy.grocerystore.databinding.FragmentCategoryBinding;
 
-public class SlideshowFragment extends Fragment {
+public class CategoryFragment extends Fragment {
 
-    private FragmentSlideshowBinding binding;
+    private FragmentCategoryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SlideshowViewModel slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentCategoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

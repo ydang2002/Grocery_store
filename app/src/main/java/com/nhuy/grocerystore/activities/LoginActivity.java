@@ -1,4 +1,4 @@
-package com.nhuy.grocerystore;
+package com.nhuy.grocerystore.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,64 +17,52 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
-import com.nhuy.grocerystore.models.UserModel;
+import com.nhuy.grocerystore.R;
 
-public class RegisterActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    Button signUp;
-    EditText name, email, password;
-    TextView signIn;
+    Button signIn;
+    EditText email, password;
+    TextView signUp;
 
     FirebaseAuth auth;
-    FirebaseDatabase database;
 
     ProgressBar progressBar;
-
-    private static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
 
-        signUp = findViewById(R.id.sign_up_btn);
-        name = findViewById(R.id.name_reg);
-        email = findViewById(R.id.email_reg);
-        password = findViewById(R.id.password_reg);
-        signIn = findViewById(R.id.sign_in);
+        signIn = findViewById(R.id.login_btn);
+        email = findViewById(R.id.email_login);
+        password = findViewById(R.id.password_login);
+        signUp = findViewById(R.id.sign_up);
 
-        progressBar = findViewById(R.id.progressBar_register);
+        progressBar = findViewById(R.id.progressbar_login);
         progressBar.setVisibility(View.GONE);
-
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-            }
-        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createUser();
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginUser();
                 progressBar.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    private void createUser() {
-        String userName = name.getText().toString();
+    private void loginUser() {
         String userEmail = email.getText().toString();
         String userPassword = password.getText().toString();
-
-        if (TextUtils.isEmpty(userName)) {
-            Toast.makeText(this, "Name is Empty", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         if (TextUtils.isEmpty(userEmail)) {
             Toast.makeText(this, "Email is Empty", Toast.LENGTH_SHORT).show();
@@ -92,21 +79,17 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        //create user
-        auth.createUserWithEmailAndPassword(userEmail, userPassword)
+        //login User
+        auth.signInWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            UserModel userModel = new UserModel(userName, userEmail, userPassword);
-                            String id = task.getResult().getUser().getUid();
-                            database.getReference().child("Users").child(id).setValue(userModel);
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
                         } else {
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(RegisterActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error" + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
