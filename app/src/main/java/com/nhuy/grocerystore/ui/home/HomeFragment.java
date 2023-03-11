@@ -22,8 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.nhuy.grocerystore.R;
+import com.nhuy.grocerystore.adapter.HomeAdapter;
 import com.nhuy.grocerystore.adapter.PopularAdapter;
 import com.nhuy.grocerystore.databinding.FragmentHomeBinding;
+import com.nhuy.grocerystore.models.HomeCategory;
 import com.nhuy.grocerystore.models.PopularModel;
 
 import java.util.ArrayList;
@@ -32,12 +34,17 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    RecyclerView popularRec;
+    RecyclerView popularRec, homeCatRec;
     FirebaseFirestore db;
 
     //popular items
     List<PopularModel> popularModelList;
     PopularAdapter popularAdapter;
+
+    //Home Category
+    List<HomeCategory> categoryList;
+    HomeAdapter homeAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -45,12 +52,37 @@ public class HomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         popularRec = root.findViewById(R.id.pop_rec);
+        homeCatRec = root.findViewById(R.id.explore_rec);
 
         //Popular items
-        popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
+        popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         popularModelList = new ArrayList<>();
         popularAdapter = new PopularAdapter(getActivity(), popularModelList);
         popularRec.setAdapter(popularAdapter);
+
+        db.collection("HomeCategory")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                HomeCategory homeCategory = document.toObject(HomeCategory.class);
+                                categoryList.add(homeCategory);
+                                homeAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        //Home Category
+        homeCatRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        categoryList = new ArrayList<>();
+        homeAdapter = new HomeAdapter(getActivity(), categoryList);
+        homeCatRec.setAdapter(homeAdapter);
 
         db.collection("PopularProducts")
                 .get()
@@ -64,7 +96,7 @@ public class HomeFragment extends Fragment {
                                 popularAdapter.notifyDataSetChanged();
                             }
                         } else {
-                            Toast.makeText(getActivity(), "Error"+task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "Error getting documents.", task.getException());
                         }
                     }
@@ -72,6 +104,7 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
 
     @Override
     public void onDestroyView() {
