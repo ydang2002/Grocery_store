@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null) {
+        if (auth.getCurrentUser() == null) {
             progressBar.setVisibility(View.VISIBLE);
             startActivity(new Intent(HomeActivity.this, MainActivity.class));
             Toast.makeText(this, "Please wait you are already logged in", Toast.LENGTH_SHORT).show();

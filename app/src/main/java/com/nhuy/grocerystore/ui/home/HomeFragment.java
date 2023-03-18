@@ -24,9 +24,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.nhuy.grocerystore.R;
 import com.nhuy.grocerystore.adapter.HomeAdapter;
 import com.nhuy.grocerystore.adapter.PopularAdapter;
+import com.nhuy.grocerystore.adapter.RecommendedAdapter;
 import com.nhuy.grocerystore.databinding.FragmentHomeBinding;
 import com.nhuy.grocerystore.models.HomeCategory;
 import com.nhuy.grocerystore.models.PopularModel;
+import com.nhuy.grocerystore.models.RecommendedModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    RecyclerView popularRec, homeCatRec;
+    RecyclerView popularRec, homeCatRec, recommendedRec;
     FirebaseFirestore db;
 
     //popular items
@@ -45,6 +47,10 @@ public class HomeFragment extends Fragment {
     List<HomeCategory> categoryList;
     HomeAdapter homeAdapter;
 
+    //Recommended
+    List<RecommendedModel> recommendedModelList;
+    RecommendedAdapter recommendedAdapter;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -53,6 +59,7 @@ public class HomeFragment extends Fragment {
 
         popularRec = root.findViewById(R.id.pop_rec);
         homeCatRec = root.findViewById(R.id.explore_rec);
+        recommendedRec = root.findViewById(R.id.recommended_rec);
 
         //Popular items
         popularRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -94,6 +101,30 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 popularAdapter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+        //Recommended
+        recommendedRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        recommendedModelList = new ArrayList<>();
+        recommendedAdapter = new RecommendedAdapter(getActivity(), recommendedModelList);
+        recommendedRec.setAdapter(recommendedAdapter);
+
+        db.collection("Recommended")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                RecommendedModel recommendedModel = document.toObject(RecommendedModel.class);
+                                recommendedModelList.add(recommendedModel);
+                                recommendedAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_SHORT).show();
