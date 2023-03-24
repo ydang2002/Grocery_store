@@ -24,14 +24,15 @@
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_category.xml" value="0.264" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_gallery.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_home.xml" value="0.12" />
-        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_my_carts.xml" value="0.1598731884057971" />
-        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_my_orders.xml" value="0.1598731884057971" />
-        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_new_product.xml" value="0.1598731884057971" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_my_carts.xml" value="0.1329479768786127" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_my_orders.xml" value="0.1329479768786127" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_new_product.xml" value="0.10648148148148148" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_offers.xml" value="0.1598731884057971" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_profile.xml" value="0.1329479768786127" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_slideshow.xml" value="0.1598731884057971" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/home_category_items.xml" value="0.1029657477025898" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/nav_cat_item.xml" value="0.12234042553191489" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/popular_item.xml" value="0.128" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/recommended_item.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />

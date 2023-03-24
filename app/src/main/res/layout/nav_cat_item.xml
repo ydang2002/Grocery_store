@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="4dp"
-    app:cardCornerRadius="5dp">
+    android:layout_marginTop="7dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,23 +28,34 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/alice"
                 android:id="@+id/nav_cat_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
+
+
 
             <TextView
+                android:fontFamily="@font/alice"
                 android:id="@+id/nav_cat_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:singleLine="false"/>
 
             <TextView
+                android:fontFamily="@font/alice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Discount: "
@@ -52,12 +64,13 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/alice"
                 android:id="@+id/nav_cat_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20% OFF"
                 android:textColor="@color/purple_700"
-                android:textSize="24sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <ImageView
