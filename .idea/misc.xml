@@ -19,6 +19,7 @@
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_login.xml" value="0.152" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_view_all.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/content_main.xml" value="0.1693840579710145" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/fragment_category.xml" value="0.264" />
@@ -35,6 +36,7 @@
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/popular_item.xml" value="0.128" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/recommended_item.xml" value="0.1" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/view_all_item.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/menu/main.xml" value="0.25052083333333336" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1005" />
