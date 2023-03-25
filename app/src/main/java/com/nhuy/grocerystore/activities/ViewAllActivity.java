@@ -78,5 +78,53 @@ public class ViewAllActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //getting Cá
+        if(type != null && type.equalsIgnoreCase("Cá")) {
+            firestore.collection("AllProducts").whereEqualTo("type", "Cá").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                        viewAllModelList.add(viewAllModel);
+                        viewAllAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
+
+        //getting Trứng
+        if(type != null && type.equalsIgnoreCase("Trứng")) {
+            firestore.collection("AllProducts").whereEqualTo("type", "Trứng").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                        viewAllModelList.add(viewAllModel);
+                        viewAllAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
+
+        //getting Sữa
+        if(type != null && type.equalsIgnoreCase("Sữa")) {
+            firestore.collection("AllProducts").whereEqualTo("type", "Sữa").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                    for (DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
+                        ViewAllModel viewAllModel = documentSnapshot.toObject(ViewAllModel.class);
+                        viewAllModelList.add(viewAllModel);
+                        viewAllAdapter.notifyDataSetChanged();
+                    }
+
+                }
+            });
+        }
     }
 }

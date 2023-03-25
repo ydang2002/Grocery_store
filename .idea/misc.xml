@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/border.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/button_background.xml" value="0.1" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/button_shape.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/edittext_background.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/edittext_bg.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.124" />
@@ -15,6 +16,7 @@
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/menu_person.xml" value="0.124" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/remove_circle.xml" value="0.108" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/drawable/Копия Copy of remove_circle.xml" value="0.161" />
+        <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_detailed.xml" value="0.22115384615384615" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_login.xml" value="0.152" />
         <entry key="..\:/src/Android/GroceryStore/app/src/main/res/layout/activity_main.xml" value="0.16" />
