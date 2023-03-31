@@ -74,6 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/detail_price" />
 
     <TextView
+        android:id="@+id/detail_dec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -126,6 +127,7 @@
         app:layout_constraintTop_toTopOf="@+id/relativeLayout" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_to_cart"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Add to cart"

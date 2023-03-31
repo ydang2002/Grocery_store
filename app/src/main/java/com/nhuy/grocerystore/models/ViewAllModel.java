@@ -1,6 +1,8 @@
 package com.nhuy.grocerystore.models;
 
-public class ViewAllModel {
+import java.io.Serializable;
+
+public class ViewAllModel implements Serializable {
     String name, description, img_url, type, rating;
     int price;
 
