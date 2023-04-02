@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.nhuy.grocerystore.MainActivity;
 import com.nhuy.grocerystore.R;
 import com.nhuy.grocerystore.models.UserModel;
 
@@ -104,6 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
                             database.getReference().child("Users").child(id).setValue(userModel);
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();

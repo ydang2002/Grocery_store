@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.nhuy.grocerystore.MainActivity;
 import com.nhuy.grocerystore.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -87,6 +88,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         } else {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Error" + task.getException(), Toast.LENGTH_SHORT).show();
