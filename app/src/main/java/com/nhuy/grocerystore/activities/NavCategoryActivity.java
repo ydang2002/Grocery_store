@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +35,7 @@ public class NavCategoryActivity extends AppCompatActivity {
     List<NavCategoryDetailModel> list;
     NavCategoryDetailAdapter adapter;
     FirebaseFirestore db;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,12 @@ public class NavCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav_category);
 
         db = FirebaseFirestore.getInstance();
+        progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
         String type = getIntent().getStringExtra("type");
 //        Log.d("LogType: ", type);
         recyclerView = findViewById(R.id.nav_cat_det_rec);
+        recyclerView.setVisibility(View.GONE);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
         adapter = new NavCategoryDetailAdapter(this, list);
@@ -57,8 +63,8 @@ public class NavCategoryActivity extends AppCompatActivity {
                         NavCategoryDetailModel viewAllModel = documentSnapshot.toObject(NavCategoryDetailModel.class);
                         list.add(viewAllModel);
                         adapter.notifyDataSetChanged();
-                        Log.d("LogResult: ", String.valueOf(task.getResult().getDocuments()));
-                    }
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);                    }
 
                 }
             });
