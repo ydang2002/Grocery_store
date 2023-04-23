@@ -1,6 +1,8 @@
 package com.nhuy.grocerystore.models;
 
-public class MyCartModel {
+import java.io.Serializable;
+
+public class MyCartModel implements Serializable {
     String ProductName, productPrice, currentDate, currentTime, totalQuantity;
     int totalPrice;
 

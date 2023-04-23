@@ -25,9 +25,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.nhuy.grocerystore.activities.PlaceOrderActivity;
 import com.nhuy.grocerystore.adapter.MyCartAdapter;
 import com.nhuy.grocerystore.models.MyCartModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,8 +72,8 @@ public class MyCartsFragment extends Fragment {
         cartAdapter = new MyCartAdapter(getActivity(), cartModelList);
         recyclerView.setAdapter(cartAdapter);
 
-        db.collection("AddToCArt").document(auth.getCurrentUser().getUid())
-                .collection("CurrentUser").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                .collection("AddToCart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -85,6 +87,15 @@ public class MyCartsFragment extends Fragment {
                         }
                     }
                 });
+
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PlaceOrderActivity.class);
+                intent.putExtra("itemList", (Serializable) cartModelList);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
