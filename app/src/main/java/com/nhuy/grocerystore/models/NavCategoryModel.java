@@ -1,16 +1,25 @@
 package com.nhuy.grocerystore.models;
 
 public class NavCategoryModel {
-    String description, name, discount, img_url;
+    String description, name, discount, img_url, type;
 
     public NavCategoryModel() {
     }
 
-    public NavCategoryModel(String description, String name, String discount, String img_url) {
+    public NavCategoryModel(String description, String name, String discount, String img_url, String type) {
         this.description = description;
         this.name = name;
         this.discount = discount;
         this.img_url = img_url;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {

@@ -51,7 +51,7 @@ public class CategoryFragment extends Fragment {
         navCategoryAdapter = new NavCategoryAdapter(getActivity(), categoryModelList);
         recyclerView.setAdapter(navCategoryAdapter);
 
-        db.collection("NewCategory")
+        db.collection("NavCategory")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
