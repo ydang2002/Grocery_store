@@ -17,14 +17,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.nhuy.grocerystore.R;
 import com.nhuy.grocerystore.databinding.FragmentProfileBinding;
+import com.nhuy.grocerystore.models.UserModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -35,7 +41,7 @@ public class ProfileFragment extends Fragment {
     Button update;
     FirebaseStorage storage;
     FirebaseAuth auth;
-    FirebaseFirestore database;
+    FirebaseDatabase database;
 
     private FragmentProfileBinding binding;
 
@@ -45,7 +51,7 @@ public class ProfileFragment extends Fragment {
         View root = binding.getRoot();
 
         auth = FirebaseAuth.getInstance();
-        database = FirebaseFirestore.getInstance();
+        database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
         profileImg = root.findViewById(R.id.profile_img);
@@ -54,6 +60,21 @@ public class ProfileFragment extends Fragment {
         number = root.findViewById(R.id.profile_number);
         address = root.findViewById(R.id.profile_address);
         update = root.findViewById(R.id.btn_update);
+
+        database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                UserModel userModel = snapshot.getValue(UserModel.class);
+
+                                Glide.with(getContext()).load(userModel.getProfileImg()).into(profileImg);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
 
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +114,15 @@ public class ProfileFragment extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            database.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
+                                    .child("profileImg").setValue(uri.toString());
+                            Toast.makeText(getContext(), "profile picture Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
         }
