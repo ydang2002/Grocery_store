@@ -3,7 +3,7 @@ package com.nhuy.grocerystore.models;
 import java.io.Serializable;
 
 public class MyCartModel implements Serializable {
-    String ProductName, productPrice, currentDate, currentTime, totalQuantity;
+    String ProductName, productPrice, currentDate, currentTime, totalQuantity, documentId;
     int totalPrice;
 
     public MyCartModel() {
@@ -16,6 +16,14 @@ public class MyCartModel implements Serializable {
         this.currentTime = currentTime;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getProductName() {
